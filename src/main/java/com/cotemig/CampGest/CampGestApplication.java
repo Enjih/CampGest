@@ -8,6 +8,8 @@ public class CampGestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampGestApplication.class, args);
+		
+	
 	}
 
 }
