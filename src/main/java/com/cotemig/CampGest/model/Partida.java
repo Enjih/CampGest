@@ -16,9 +16,16 @@ public class Partida {
 	  private String nome_estadio;
 	  private String nome_campeonato;
 	  private String data_partida;
-	  private int cod_arbrito;
+	  private int cod_arbitro;
 	  
 	  
+	  
+	  public int getCod_arbitro() {
+		return cod_arbitro;
+	}
+	public void setCod_arbitro(int cod_arbitro) {
+		this.cod_arbitro = cod_arbitro;
+	}
 	public int getCod_partida() {
 		return cod_partida;
 	}
@@ -102,12 +109,6 @@ public class Partida {
 	}
 	public void setData_partida(String data_partida) {
 		this.data_partida = data_partida;
-	}
-	public int getCod_arbrito() {
-		return cod_arbrito;
-	}
-	public void setCod_arbrito(int cod_arbrito) {
-		this.cod_arbrito = cod_arbrito;
 	}
 }
 	  

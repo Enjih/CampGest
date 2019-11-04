@@ -1,6 +1,6 @@
 package com.cotemig.CampGest.model;
 
-public class Arbrito {
+public class Arbitro {
 
 	private Integer cod_arbitro;
 	private String nome_arbitro;
