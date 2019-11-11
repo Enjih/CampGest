@@ -23,6 +23,16 @@ public class AtletaController {
 	@Autowired
 	private TimeService timeService;
 	
+	@RequestMapping( value = "/Atleta", method = RequestMethod.GET) 
+    public ModelAndView usuario(){
+		ModelAndView mav = new ModelAndView("indexAtleta");
+		
+        mav.addObject("atletas", atletaService.getAllAtletas());
+        mav.addObject("atleta", new Atleta());
+		mav.addObject("times", timeService.getAllTimes());
+        
+        return mav;
+    }
 	
 	@RequestMapping(value = "/insertAtleta", method = RequestMethod.GET)
     public ModelAndView insertAtleta() {
@@ -49,11 +59,8 @@ public class AtletaController {
     }
 	
 	@RequestMapping(value = "/excluirAtleta", method = RequestMethod.GET)
-    public ModelAndView excluirAtleta(Integer id) {
-		
-		return new ModelAndView("excluirAtleta", "atleta", atletaService.getAtletaById(id).get());
-		
-		
+    public ModelAndView excluirAtleta(Integer id) {		
+		return new ModelAndView("excluirAtleta", "atleta", atletaService.getAtletaById(id).get());		
     }
 	
 	@RequestMapping(value = "/excluirAtleta", method = RequestMethod.POST)
@@ -62,7 +69,7 @@ public class AtletaController {
         
 		if (result.hasErrors()) {
             return "error";
-        }
+        } 
 		
 		atletaService.deleteAtletaById(atleta.getCod_atleta());
         

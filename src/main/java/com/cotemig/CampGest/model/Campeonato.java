@@ -1,11 +1,21 @@
 package com.cotemig.CampGest.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Campeonato {
 	
-	  private int cod_campeonato;
-	  private String nome_campeonato;
-	  private String dtaInicio_campeonato;
-	  private String dtaFinal_campeonato;
+
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int cod_campeonato;
+	
+    private String nome_campeonato;
+    private String dtaInicio_campeonato;
+    private String dtaFinal_campeonato;
 	public int getCod_campeonato() {
 		return cod_campeonato;
 	}

@@ -1,10 +1,18 @@
 package com.cotemig.CampGest.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Clube {
 
-	  private int cod_clube;
-	  private String nome_clube;
-	  private String cidade_clube;
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private int cod_clube;
+	private String nome_clube;
+	private String cidade_clube;
 	  
 	  
 	public int getCodigo_clube() {

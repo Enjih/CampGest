@@ -1,5 +1,8 @@
 package com.cotemig.CampGest.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Partida {
 
 	  private int cod_partida;
@@ -16,9 +19,7 @@ public class Partida {
 	  private String nome_estadio;
 	  private String nome_campeonato;
 	  private String data_partida;
-	  private int cod_arbitro;
-	  
-	  
+	  private int cod_arbitro;	  
 	  
 	  public int getCod_arbitro() {
 		return cod_arbitro;

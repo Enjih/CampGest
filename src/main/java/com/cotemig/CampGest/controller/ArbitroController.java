@@ -23,20 +23,20 @@ public class ArbitroController {
 		
         ModelAndView mav = new ModelAndView("insertArbitro");
         
-        mav.addObject("Arbitro", new Arbitro());
+        mav.addObject("arbitro", new Arbitro());
         
         return mav;
     }
 	
 	@RequestMapping(value = "/insertArbitro", method = RequestMethod.POST)
-    public String submitInsert(@Valid @ModelAttribute("Arbitro")Arbitro Arbitro,
+    public String submitInsert(@Valid @ModelAttribute("Arbitro")Arbitro arbitro,
       BindingResult result, ModelMap model) {
         
 		if (result.hasErrors()) {
             return "error";
         }
         
-		arbitroService.insertArbitro(Arbitro);
+		arbitroService.insertArbitro(arbitro);
         
         return "redirect:";
     }
@@ -50,14 +50,14 @@ public class ArbitroController {
     }
 	
 	@RequestMapping(value = "/excluirArbitro", method = RequestMethod.POST)
-    public String submitExcluirArbitro(@Valid @ModelAttribute("Arbitro")Arbitro Arbitro,
+    public String submitExcluirArbitro(@Valid @ModelAttribute("Arbitro")Arbitro arbitro,
       BindingResult result, ModelMap model) {
         
 		if (result.hasErrors()) {
             return "error";
         }
 		
-		arbitroService.deleteArbitroById(Arbitro.getCodigo_arbitro());
+		arbitroService.deleteArbitroById(arbitro.getCodigo_arbitro());
         
         return "redirect:";
     }
@@ -69,16 +69,14 @@ public class ArbitroController {
     }
 	
 	@RequestMapping(value = "/alterarArbitro", method = RequestMethod.POST)
-    public String submitUpdate(@Valid @ModelAttribute("aluno")Arbitro Arbitro,
+    public String submitUpdate(@Valid @ModelAttribute("aluno")Arbitro arbitro,
       BindingResult result, ModelMap model) {
         
 		if (result.hasErrors()) {
             return "error";
-        }
+        }		
 		
-		
-		
-		arbitroService.updateArbitro(Arbitro);
+		arbitroService.updateArbitro(arbitro);
         
         return "redirect:";
     }

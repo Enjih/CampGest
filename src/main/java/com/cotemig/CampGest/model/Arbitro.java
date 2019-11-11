@@ -1,7 +1,15 @@
 package com.cotemig.CampGest.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Arbitro {
 
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer cod_arbitro;
 	private String nome_arbitro;
 	

@@ -10,8 +10,8 @@ public interface AtletaService {
 	List<Atleta> getAllAtletas();
 	void deleteAllAtletas();
 	void deleteAtletaById(Integer id);
-	void updateAtletaById(Integer id, Atleta Atleta);
-	void updateAtleta(Atleta Atleta);
-	void insertAtleta(Atleta Atleta);
+	void updateAtletaById(Integer id, Atleta atleta);
+	void updateAtleta(Atleta atleta);
+	void insertAtleta(Atleta atleta);
 	
 }

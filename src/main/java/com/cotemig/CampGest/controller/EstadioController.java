@@ -20,17 +20,17 @@ public class EstadioController {
 	private EstadioService estadioService;
 
 	
-	@RequestMapping(value = "/insertestadio", method = RequestMethod.GET)
-    public ModelAndView insertestadio() {
+	@RequestMapping(value = "/insertEstadio", method = RequestMethod.GET)
+    public ModelAndView insertEstadio() {
 		
-        ModelAndView mav = new ModelAndView("insertestadio");
+        ModelAndView mav = new ModelAndView("insertEstadio");
         
-        mav.addObject("Estadio", new Estadio());
+        mav.addObject("estadio", new Estadio());
         
         return mav;
     }
 	
-	@RequestMapping(value = "/insertestadio", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertEstadio", method = RequestMethod.POST)
     public String submitInsert(@Valid @ModelAttribute("estadio")Estadio estadio,
       BindingResult result, ModelMap model) {
         
@@ -43,15 +43,13 @@ public class EstadioController {
         return "redirect:";
     }
 	
-	@RequestMapping(value = "/excluirestadio", method = RequestMethod.GET)
+	@RequestMapping(value = "/excluirEstadio", method = RequestMethod.GET)
     public ModelAndView excluirestadio(Integer id) {
 		
-		return new ModelAndView("excluirestadio", "estadio", estadioService.getEstadioById(id).get());
-		
-		
+		return new ModelAndView("excluirEstadio", "estadio", estadioService.getEstadioById(id).get());		
     }
 	
-	@RequestMapping(value = "/excluirestadio", method = RequestMethod.POST)
+	@RequestMapping(value = "/excluirEstadio", method = RequestMethod.POST)
     public String submitExcluirestadio(@Valid @ModelAttribute("estadio")Estadio estadio,
       BindingResult result, ModelMap model) {
         
@@ -64,21 +62,19 @@ public class EstadioController {
         return "redirect:";
     }
 	
-	@RequestMapping(value = "/alterarestadio", method = RequestMethod.GET)
+	@RequestMapping(value = "/alterarEstadio", method = RequestMethod.GET)
     public ModelAndView alterarestadio(Integer id) {
 		
-        return new ModelAndView("alterarestadio", "estadio", estadioService.getEstadioById(id).get());
+        return new ModelAndView("alterarEstadio", "estadio", estadioService.getEstadioById(id).get());
     }
 	
-	@RequestMapping(value = "/alterarestadio", method = RequestMethod.POST)
+	@RequestMapping(value = "/alterarEstadio", method = RequestMethod.POST)
     public String submitUpdate(@Valid @ModelAttribute("aluno")Estadio estadio,
       BindingResult result, ModelMap model) {
         
 		if (result.hasErrors()) {
             return "error";
-        }
-		
-		
+        }	
 		
 		estadioService.updateEstadio(estadio);
         

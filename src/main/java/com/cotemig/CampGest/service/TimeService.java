@@ -12,7 +12,7 @@ public interface TimeService {
 	void deleteAllTimes();
 	void deleteTimeById(Integer id);
 	void updateTimeById(Integer id, Time Time);
-	void updateTime(Time Time);
-	void insertTime(Time Time);
+	void updateTime(Time time);
+	void insertTime(Time time);
 
 }
