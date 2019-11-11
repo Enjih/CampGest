@@ -27,7 +27,9 @@ public class Time {
 		return atletas;
 	}
 	public void setAtletas(Set<Atleta> atletas) {
-		this.atletas = atletas;
+		if (calculaAtleta() == true){
+			this.atletas = atletas;
+		}
 	}
 	@OneToMany(mappedBy="time")
     private Set<Atleta> atletas;
@@ -37,5 +39,14 @@ public class Time {
 	}
 	public void setNome_time(String nome_time) {
 		this.nome_time = nome_time;
-	}		
+	}
+
+	public boolean calculaAtleta(){
+		if ( atletas.size() < 24 ) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 }
