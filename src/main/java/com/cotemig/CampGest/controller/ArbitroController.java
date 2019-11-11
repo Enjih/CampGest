@@ -65,7 +65,7 @@ public class ArbitroController {
 	@RequestMapping(value = "/alterarArbitro", method = RequestMethod.GET)
     public ModelAndView alterarArbitro(Integer id) {
 		
-        return new ModelAndView("alterarArbitro", "Arbitro", arbitroService.getArbitroById(id).get());
+        return new ModelAndView("alterarArbitro", "arbitro", arbitroService.getArbitroById(id).get());
     }
 	
 	@RequestMapping(value = "/alterarArbitro", method = RequestMethod.POST)

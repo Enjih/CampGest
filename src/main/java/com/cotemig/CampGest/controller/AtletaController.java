@@ -24,7 +24,7 @@ public class AtletaController {
 	private TimeService timeService;
 	
 	@RequestMapping( value = "/Atleta", method = RequestMethod.GET) 
-    public ModelAndView usuario(){
+    public ModelAndView atleta(){
 		ModelAndView mav = new ModelAndView("indexAtleta");
 		
         mav.addObject("atletas", atletaService.getAllAtletas());
@@ -40,7 +40,7 @@ public class AtletaController {
         ModelAndView mav = new ModelAndView("insertAtleta");
         
         mav.addObject("atleta", new Atleta());
-        mav.addObject("time", timeService.getAllTimes());
+        mav.addObject("times", timeService.getAllTimes());
         
         return mav;
     }
@@ -53,8 +53,7 @@ public class AtletaController {
             return "error";
         }
         
-		atletaService.insertAtleta(atleta);
-        
+		atletaService.insertAtleta(atleta);        
         return "redirect:";
     }
 	
@@ -83,19 +82,13 @@ public class AtletaController {
     }
 	
 	@RequestMapping(value = "/alterarAtleta", method = RequestMethod.POST)
-    public String submitUpdate(@Valid @ModelAttribute("aluno")Atleta atleta,
+    public String submitUpdate(@Valid @ModelAttribute("atleta")Atleta atleta,
       BindingResult result, ModelMap model) {
         
 		if (result.hasErrors()) {
             return "error";
-        }
-		
-		
-		
-		atletaService.updateAtleta(atleta);
-        
+        }		
+		atletaService.updateAtleta(atleta);        
         return "redirect:";
     }
-	 	
-
 }

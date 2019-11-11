@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Atleta</title>
+    <title>Time</title>
     <style>
 		table, th, td {
 		  border: 1px solid black;
@@ -16,7 +16,7 @@
         <body>               
             <div class="container">
                      <div class="row">  
-                         <a type="submit" class="btn btn-default" href="insertAtleta">Novo atleta</a> 
+                         <a type="submit" class="btn btn-default" href="insertTime">Novo Time</a> 
                      </div>
                      <br/>
                      <div class="row">
@@ -24,20 +24,18 @@
                     <thead>
                        <tr>
                             <td>Cód</td>
-                            <td>Nome</td>
-                            <td>Time</td>                            
+                            <td>Nome time</td>            
                         </tr>  
                     </thead>
                     <tbody>        
-                            <tr th:each="atleta : ${atletas}">
-                                    <td th:text="${atleta.cod_atleta}"></td>
-                                    <td th:text="${atleta.nome_atleta}"></td>
-                                    <td th:text="${atleta.time.nome_time}"></td>		
-                                    <td>
-                                        <a th:href="@{/alterarAtleta(id=${atleta.cod_atleta})}">Alterar</a>
-                                        <a th:href="@{/excluirAtleta(id=${atleta.cod_atleta})}">Excluir</a>
-                                    </td>
-                                </tr>	
+                        <tr th:each="time : ${times}">
+                                <td th:text="${time.cod_time}"></td>
+                                <td th:text="${time.nome_time}"></td>		
+                                <td>
+                                    <a th:href="@{/alterarTime(id=${time.cod_time})}">Alterar</a>
+                                    <a th:href="@{/excluirTime(id=${time.cod_time})}">Excluir</a>
+                                </td>
+                        </tr>	
                     </tbody>   
                     </table> 
                      </div>
