@@ -12,6 +12,12 @@ public class Atleta {
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer cod_atleta;
 	
+	public Integer getCod_atleta() {
+		return cod_atleta;
+	}
+	public void setCod_atleta(Integer cod_atleta) {
+		this.cod_atleta = cod_atleta;
+	}
 	private String nome_atleta;
 	private Time time;
 	
