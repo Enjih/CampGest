@@ -1,0 +1,17 @@
+<html>
+	<head>
+	    <title>Alterar atleta</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<form action="/alterarAtleta" method="POST" modelAttribute="atleta">		
+			ID:<br>
+  			<input type="text" name="cod_atleta" th:value="${atleta.cod_atleta}" readOnly="true"><br>
+  			<br>
+  			Nome Atleta:<br>
+  			<input type="text" name="nome_atleta" th:value="${atleta.nome_atleta}"><br>
+  			
+  			<input type="submit" value="Atualizar">
+		</form>
+	</body>
+</html>

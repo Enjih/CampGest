@@ -49,7 +49,7 @@ public class TimeController {
         
 		timeService.insertTime(time);
         
-        return "redirect:indexTime";
+        return "redirect:Time";
     }
 	
 	@RequestMapping(value = "/alterarTime", method = RequestMethod.GET)
@@ -65,7 +65,7 @@ public class TimeController {
             return "error";
         }		
 		timeService.updateTime(time);        
-        return "redirect:indexTime";
+        return "redirect:Time";
     }
 	
 	@RequestMapping(value = "/excluirTime", method = RequestMethod.GET)
@@ -80,6 +80,6 @@ public class TimeController {
             return "error";
         } 		
 		timeService.deleteTimeById(time.getCod_time());        
-		return "redirect:indexTime";
+		return "redirect:Time";
     }	
 }

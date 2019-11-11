@@ -54,7 +54,7 @@ public class AtletaController {
         }
         
 		atletaService.insertAtleta(atleta);        
-        return "redirect:";
+        return "redirect:Atleta";
     }
 	
 	@RequestMapping(value = "/excluirAtleta", method = RequestMethod.GET)
@@ -72,7 +72,7 @@ public class AtletaController {
 		
 		atletaService.deleteAtletaById(atleta.getCod_atleta());
         
-        return "redirect:";
+		return "redirect:Atleta";
     }
 	
 	@RequestMapping(value = "/alterarAtleta", method = RequestMethod.GET)
@@ -89,6 +89,6 @@ public class AtletaController {
             return "error";
         }		
 		atletaService.updateAtleta(atleta);        
-        return "redirect:";
+		return "redirect:Atleta";
     }
 }
