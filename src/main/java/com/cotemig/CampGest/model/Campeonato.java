@@ -16,6 +16,7 @@ public class Campeonato {
     private String nome_campeonato;
     private String dtaInicio_campeonato;
     private String dtaFinal_campeonato;
+    
 	public int getCod_campeonato() {
 		return cod_campeonato;
 	}

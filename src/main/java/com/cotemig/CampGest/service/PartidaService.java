@@ -12,7 +12,7 @@ public interface PartidaService {
 	void deleteAllPartidas();
 	void deletePartidaById(Integer id);
 	void updatePartidaById(Integer id, Partida Partida);
-	void updatePartida(Partida Partida);
-	void insertPartida(Partida Partida);
+	void updatePartida(Partida partida);
+	void insertPartida(Partida partida);
 
 }
