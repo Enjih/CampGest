@@ -1,6 +1,6 @@
 package com.cotemig.CampGest.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,21 +17,21 @@ public class Time {
 	
 	private String nome_time;
 	
+	@OneToMany(mappedBy="time")
+    private List<Atleta> atletas;
+	
 	public Integer getCod_time() {
 		return cod_time;
 	}
 	public void setCod_time(Integer cod_time) {
 		this.cod_time = cod_time;
 	}
-	public Set<Atleta> getAtletas() {
+	public List<Atleta> getAtletas() {
 		return atletas;
 	}
-	public void setAtletas(Set<Atleta> atletas) {
+	public void setAtletas(List<Atleta> atletas) {
 		this.atletas = atletas;
-	}
-	@OneToMany(mappedBy="time")
-    private Set<Atleta> atletas;
-	
+	}	
 	public String getNome_time() {
 		return nome_time;
 	}

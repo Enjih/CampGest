@@ -40,7 +40,7 @@ public class AtletaController {
         ModelAndView mav = new ModelAndView("insertAtleta");
         
         mav.addObject("atleta", new Atleta());
-        mav.addObject("times", timeService.getAllTimes());
+        mav.addObject("times", timeService.getAllTimes());     
         
         return mav;
     }
@@ -52,9 +52,15 @@ public class AtletaController {
 		if (result.hasErrors()) {
             return "error";
         }
-        
-		atletaService.insertAtleta(atleta);        
-        return "redirect:Atleta";
+        //verifica se o time escolhido para o atleta possui mais de 24 jogadores
+		if(atleta.getTime().getAtletas().size() > 23) {//caso tenha, retorna mensagem de erro
+			return "Time escolhido tem 24 atletas";
+			
+		}else {//caso nao tenha, insere o atleta no banco, e insere o atleta na lista de atletas do time
+			atletaService.insertAtleta(atleta);   	
+			atleta.getTime().getAtletas().add(atleta); 	
+			return "redirect:Atleta";
+		}		             
     }
 	
 	@RequestMapping(value = "/excluirAtleta", method = RequestMethod.GET)

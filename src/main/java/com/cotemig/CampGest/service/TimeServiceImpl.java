@@ -39,6 +39,7 @@ public class TimeServiceImpl implements TimeService{
 		Optional<Time> getTime = getTimeById(id);
 		getTime.get().setNome_time(time.getNome_time());
 		getTime.get().setCod_time(time.getCod_time());
+		getTime.get().setAtletas(time.getAtletas());
 		
 		timeDAO.save(time);				
 	}

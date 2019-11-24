@@ -53,7 +53,7 @@ public class TimeController {
     }
 	
 	@RequestMapping(value = "/alterarTime", method = RequestMethod.GET)
-    public ModelAndView alterarAtleta(Integer id) {		
+    public ModelAndView alterarTime(Integer id) {		
         return new ModelAndView("alterarTime", "time", timeService.getTimeById(id).get());
     }
 	
@@ -69,12 +69,12 @@ public class TimeController {
     }
 	
 	@RequestMapping(value = "/excluirTime", method = RequestMethod.GET)
-    public ModelAndView excluirAtleta(Integer id) {		
+    public ModelAndView excluirTime(Integer id) {		
 		return new ModelAndView("excluirTime", "time", timeService.getTimeById(id).get());		
     }
 	
 	@RequestMapping(value = "/excluirTime", method = RequestMethod.POST)
-    public String submitExcluirAtleta(@Valid @ModelAttribute("time")Time time,
+    public String submitExcluirTime(@Valid @ModelAttribute("time")Time time,
       BindingResult result, ModelMap model) {        
 		if (result.hasErrors()) {
             return "error";
