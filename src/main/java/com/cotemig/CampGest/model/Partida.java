@@ -1,121 +1,122 @@
 package com.cotemig.CampGest.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Partida {
-
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer cod_partida;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer cod_partida;
+
+	@ManyToOne
+	@JoinColumn(name="campeonato_id", nullable=false)
+	private Campeonato campeonato;
+
+	@ManyToOne
+	@JoinColumn(name="estadio_id", nullable=false)
+	private Estadio estadio;
 	
-  private Integer cod_campeonato;
-  private Integer cod_estadio;
-  private Integer timeVencedor;
-  private Integer cod_time1;
-  private Integer cod_time2;
-  private Integer gol_time1;
-  private Integer gol_time2;
-  private String nome_time1;
-  private String nome_time2;
-  private String nome_estadio;
-  private String nome_campeonato;
-  private Date data_partida;
-  private Integer cod_arbitro;
-  
-public Integer getCod_partida() {
-	return cod_partida;
-}
-public void setCod_partida(Integer cod_partida) {
-	this.cod_partida = cod_partida;
-}
-public Integer getCod_campeonato() {
-	return cod_campeonato;
-}
-public void setCod_campeonato(Integer cod_campeonato) {
-	this.cod_campeonato = cod_campeonato;
-}
-public Integer getCod_estadio() {
-	return cod_estadio;
-}
-public void setCod_estadio(Integer cod_estadio) {
-	this.cod_estadio = cod_estadio;
-}
-public Integer getTimeVencedor() {
-	return timeVencedor;
-}
-public void setTimeVencedor(Integer timeVencedor) {
-	this.timeVencedor = timeVencedor;
-}
-public Integer getCod_time1() {
-	return cod_time1;
-}
-public void setCod_time1(Integer cod_time1) {
-	this.cod_time1 = cod_time1;
-}
-public Integer getCod_time2() {
-	return cod_time2;
-}
-public void setCod_time2(Integer cod_time2) {
-	this.cod_time2 = cod_time2;
-}
-public Integer getGol_time1() {
-	return gol_time1;
-}
-public void setGol_time1(Integer gol_time1) {
-	this.gol_time1 = gol_time1;
-}
-public Integer getGol_time2() {
-	return gol_time2;
-}
-public void setGol_time2(Integer gol_time2) {
-	this.gol_time2 = gol_time2;
-}
-public String getNome_time1() {
-	return nome_time1;
-}
-public void setNome_time1(String nome_time1) {
-	this.nome_time1 = nome_time1;
-}
-public String getNome_time2() {
-	return nome_time2;
-}
-public void setNome_time2(String nome_time2) {
-	this.nome_time2 = nome_time2;
-}
-public String getNome_estadio() {
-	return nome_estadio;
-}
-public void setNome_estadio(String nome_estadio) {
-	this.nome_estadio = nome_estadio;
-}
-public String getNome_campeonato() {
-	return nome_campeonato;
-}
-public void setNome_campeonato(String nome_campeonato) {
-	this.nome_campeonato = nome_campeonato;
-}
-public Date getData_partida() {
-	return data_partida;
-}
-public void setData_partida(Date data_partida) {
-	this.data_partida = data_partida;
-}
-public Integer getCod_arbitro() {
-	return cod_arbitro;
-}
-public void setCod_arbitro(Integer cod_arbitro) {
-	this.cod_arbitro = cod_arbitro;
-}	  
-	  
+	private Time time1;
+	private Time time2;
+	private Integer gol_time1;
+	private Integer gol_time2;
+	private Date data_partida;
+	private List<Arbitro> arbitros;
 	
-}
-	  
-	  
-	  
+	//Implementação RN01 - Pontuação dos jogos
+	public void cauculaPontuacao(Time time1, Time time2, Integer gol_time1, Integer gol_time2){
+		if(gol_time1 > gol_time2) {
+			time1.setPontos(time1.getPontos() + 3);
+			time1.setVitorias(time1.getVitorias() + 1);
+			time1.setGols_pro(time1.getGols_pro() + gol_time1);
+			time1.setGols_contra(time1.getGols_contra() + gol_time2);
+			time2.setDerrotas(time2.getDerrotas() + 1);	
+		} else if (gol_time2 > gol_time1) {
+			time2.setPontos(time2.getPontos() + 3);
+			time2.setVitorias(time2.getVitorias() + 1);
+			time2.setGols_pro(time2.getGols_pro() + gol_time2);
+			time2.setGols_contra(time2.getGols_contra() + gol_time1);
+			time1.setDerrotas(time1.getDerrotas() + 1);			
+		} else {
+			time1.setPontos(time1.getPontos() + 1);
+			time2.setPontos(time2.getPontos() + 1);
+			time1.setEmpates(time1.getEmpates() + 1);
+			time2.setEmpates(time2.getEmpates() + 1);			
+			time1.setGols_pro(time1.getGols_pro() + gol_time1);
+			time1.setGols_contra(time1.getGols_contra() + gol_time2);
+			time2.setGols_pro(time2.getGols_pro() + gol_time2);
+			time2.setGols_contra(time2.getGols_contra() + gol_time1);			
+		}		
+	}	
+	public Integer getCod_partida() {
+		return cod_partida;
+	}
+	public void setCod_partida(Integer cod_partida) {
+		this.cod_partida = cod_partida;
+	}
+	public Campeonato getCampeonato() {
+		return campeonato;
+	}
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
+	}
+	public Estadio getEstadio() {
+		return estadio;
+	}
+	public void setEstadio(Estadio estadio) {
+		this.estadio = estadio;
+	}
+	public Time getTime1() {
+		return time1;
+	}
+	public void setTime1(Time time1) {
+		this.time1 = time1;
+	}
+	public Time getTime2() {
+		return time2;
+	}
+	public void setTime2(Time time2) {
+		this.time2 = time2;
+	}
+	public Integer getGol_time1() {
+		return gol_time1;
+	}
+	public void setGol_time1(Integer gol_time1) {
+		this.gol_time1 = gol_time1;
+	}
+	public Integer getGol_time2() {
+		return gol_time2;
+	}
+	public void setGol_time2(Integer gol_time2) {
+		this.gol_time2 = gol_time2;
+	}
+	public Date getData_partida() {
+		return data_partida;
+	}
+	public void setData_partida(Date data_partida) {
+		this.data_partida = data_partida;
+	}
 	
+	//Implementação da RN04 – Quantidade árbitros por partida
+	public List<Arbitro> getArbitros() {
+		arbitros = new ArrayList<Arbitro>(4);
+		return arbitros;
+	}
+	public void setArbitros(List<Arbitro> arbitros) {
+		if(arbitros.size() <= 4) {
+			this.arbitros = arbitros;
+		}
+	}
+}
+
+
+

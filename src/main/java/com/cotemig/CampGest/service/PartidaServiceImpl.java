@@ -40,18 +40,16 @@ public class PartidaServiceImpl implements PartidaService {
 	public void updatePartidaById(Integer id, Partida partida) {
 		Optional<Partida> getPartida = getPartidaById(id);
 		getPartida.get().setCod_partida(partida.getCod_partida());
-		getPartida.get().setCod_campeonato(partida.getCod_campeonato());
-		getPartida.get().setCod_estadio(partida.getCod_estadio());
-		getPartida.get().setTimeVencedor(partida.getTimeVencedor());
-		getPartida.get().setCod_time1(partida.getCod_time1());
-		getPartida.get().setCod_time2(partida.getCod_time2());
+		getPartida.get().setCampeonato(partida.getCampeonato());
+		getPartida.get().setEstadio(partida.getEstadio());
+		getPartida.get().setTime1(partida.getTime1());
+		getPartida.get().setTime2(partida.getTime2());
 		getPartida.get().setGol_time1(partida.getGol_time1());
 		getPartida.get().setGol_time2(partida.getGol_time2());
-		getPartida.get().setNome_estadio(partida.getNome_estadio());
-		getPartida.get().setNome_campeonato(partida.getNome_campeonato());
 		getPartida.get().setData_partida(partida.getData_partida());
-		getPartida.get().setCod_arbitro(partida.getCod_arbitro());
-
+		getPartida.get().setArbitros(partida.getArbitros());
+		
+		
 		partidaDAO.save(partida);		
 		
 	}

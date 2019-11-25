@@ -42,11 +42,8 @@ public class ArbitroController {
     }
 	
 	@RequestMapping(value = "/excluirArbitro", method = RequestMethod.GET)
-    public ModelAndView excluirArbitro(Integer id) {
-		
-		return new ModelAndView("excluirArbitro", "arbitro", arbitroService.getArbitroById(id).get());
-		
-		
+    public ModelAndView excluirArbitro(Integer id) {		
+		return new ModelAndView("excluirArbitro", "arbitro", arbitroService.getArbitroById(id).get());		
     }
 	
 	@RequestMapping(value = "/excluirArbitro", method = RequestMethod.POST)
