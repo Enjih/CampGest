@@ -15,6 +15,7 @@ public class ArbitroServiceImpl implements ArbitroService {
 	@Autowired
 	ArbitroDAO arbitroDAO;
 	
+	
 	@Override
 	public Optional<Arbitro> getArbitroById(Integer id) {
 		return arbitroDAO.findById(id);
