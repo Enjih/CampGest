@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Tabela do Campeonato</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+         <style>
+		table, th, td {
+		  border: 1px solid black;
+		  border-collapse: collapse;
+		}
+	</style>
+    </head>
+    <body>
+        
+        <table class="table table-bordered" >
+                    <thead>
+                       <tr>
+                            <td>Cód</td>
+                            <td>Nome</td>
+                            <td>Pontos</td>
+                            <td>JG</td>
+                            <td>JP</td>
+                            <td>EMPATE<td>
+                            <td>GP</td>
+                            <td>GC</td>
+                            <td>SG</td>
+                                                        
+                        </tr>  
+                    </thead>
+                    <tbody>        
+                            <tr th:each="time : ${time}">
+                                <td th:text="${time.cod_time}"></td>
+                                <td th:text="${time.nome_time}"></td>
+                                <td th:text="${time.pontos}"></td>
+                                <td th:text="${time.vitorias}"></td>
+                                <td th:text="${time.derrotas}"></td>
+                                <td th:text="${time.empates}"></td>
+                                <td th:text="${time.gols_pro}"></td>
+                                <td th:text="${time.gols_contra}"></td>
+                                <td th:text="${time.gols_pro - time.gols_contra}"></td>
+                            </tr>	
+                    </tbody>   
+                    </table> 
+    </body>
+</html>

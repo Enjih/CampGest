@@ -34,18 +34,18 @@ public class AtletaController {
         return mav;
     }
 	
-	@RequestMapping(value = "/insertAtleta", method = RequestMethod.GET)
+    @RequestMapping(value = "/insertAtleta", method = RequestMethod.GET)
     public ModelAndView insertAtleta() {
 		
         ModelAndView mav = new ModelAndView("insertAtleta");
-        
+
         mav.addObject("atleta", new Atleta());
         mav.addObject("times", timeService.getAllTimes());     
-        
+
         return mav;
     }
 	
-	@RequestMapping(value = "/insertAtleta", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertAtleta", method = RequestMethod.POST)
     public String submitInsert(@Valid @ModelAttribute("atleta")Atleta atleta,
       BindingResult result, ModelMap model) {
         
