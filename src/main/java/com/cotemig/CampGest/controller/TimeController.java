@@ -33,6 +33,16 @@ public class TimeController {
         
         return mav;
     }
+    
+     @RequestMapping(value="/TabelaCampeonato", method = RequestMethod.GET)
+    public ModelAndView TabelaCampeonato(){
+        ModelAndView mav = new ModelAndView("indexTabelaCampeonato");
+        
+        mav.addObject("times", timeService.getAllTimes());
+        
+        return mav;
+    
+    }
 	
 	@RequestMapping(value = "/insertTime", method = RequestMethod.GET)
     public ModelAndView insertAtleta() {

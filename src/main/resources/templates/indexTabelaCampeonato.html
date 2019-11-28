@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Tabela do Campeonato</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-         <style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabela Campeonato</title>
+    <style>
 		table, th, td {
 		  border: 1px solid black;
 		  border-collapse: collapse;
@@ -22,12 +17,12 @@ and open the template in the editor.
         <table class="table table-bordered" >
                     <thead>
                        <tr>
-                            <td>Cód</td>
+                            <td >Cód</td>
                             <td>Nome</td>
                             <td>Pontos</td>
                             <td>JG</td>
                             <td>JP</td>
-                            <td>EMPATE<td>
+                            <td>EMPATE</td>
                             <td>GP</td>
                             <td>GC</td>
                             <td>SG</td>
@@ -35,7 +30,7 @@ and open the template in the editor.
                         </tr>  
                     </thead>
                     <tbody>        
-                            <tr th:each="time : ${time}">
+                            <tr th:each="time : ${times}">
                                 <td th:text="${time.cod_time}"></td>
                                 <td th:text="${time.nome_time}"></td>
                                 <td th:text="${time.pontos}"></td>
@@ -44,7 +39,7 @@ and open the template in the editor.
                                 <td th:text="${time.empates}"></td>
                                 <td th:text="${time.gols_pro}"></td>
                                 <td th:text="${time.gols_contra}"></td>
-                                <td th:text="${time.gols_pro - time.gols_contra}"></td>
+                                <td th:text="${time.gols_saldo}"></td>
                             </tr>	
                     </tbody>   
                     </table> 

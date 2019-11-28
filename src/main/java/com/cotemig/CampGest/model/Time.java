@@ -29,6 +29,8 @@ public class Time {
 	private Integer empates;	
 	private Integer gols_pro;
 	private Integer gols_contra;
+        private Integer gols_saldo;
+	
 	
 	@ManyToMany(mappedBy="times")
 	private List<Partida> partidas;
@@ -36,6 +38,13 @@ public class Time {
 	@ManyToOne
 	@JoinColumn(name="campeonato_id", nullable=false)
 	private Campeonato campeonato;
+        
+        private void setGols_saldo(){
+		this.gols_saldo =  gols_pro - gols_contra;
+	}
+	public Integer getGols_saldo(){
+		return this.gols_saldo;
+        }
 	
 	public List<Partida> getPartidas() {
 		return partidas;
@@ -95,6 +104,7 @@ public class Time {
 
 	public void setGols_pro(Integer gols_pro) {
 		this.gols_pro = gols_pro;
+                setGols_saldo();
 	}
 
 	public Integer getGols_contra() {
@@ -103,6 +113,7 @@ public class Time {
 
 	public void setGols_contra(Integer gols_contra) {
 		this.gols_contra = gols_contra;
+                setGols_saldo();
 	}
 
 	public Integer getCod_time() {
