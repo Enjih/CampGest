@@ -83,18 +83,21 @@ public class TimeController {
         return "redirect:Time";
     }
 	
-	@RequestMapping(value = "/excluirTime", method = RequestMethod.GET)
-    public ModelAndView excluirTime(Integer id) {		
-		return new ModelAndView("excluirTime", "time", timeService.getTimeById(id).get());		
+    @RequestMapping(value = "/excluirTime", method = RequestMethod.GET)
+    public String excluirTime(Integer id) {		
+        timeService.deleteTimeById(id);
+
+        return "redirect:Time";
     }
+    
 	
-	@RequestMapping(value = "/excluirTime", method = RequestMethod.POST)
-    public String submitExcluirTime(@Valid @ModelAttribute("time")Time time,
-      BindingResult result, ModelMap model) {        
-		if (result.hasErrors()) {
-            return "error";
-        } 		
-		timeService.deleteTimeById(time.getCod_time());        
-		return "redirect:Time";
-    }	
+//	@RequestMapping(value = "/excluirTime", method = RequestMethod.POST)
+//    public String submitExcluirTime(@Valid @ModelAttribute("time")Time time,
+//      BindingResult result, ModelMap model) {        
+//		if (result.hasErrors()) {
+//            return "error";
+//        } 		
+//		timeService.deleteTimeById(time.getCod_time());        
+//		return "redirect:Time";
+//    }	
 }
