@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Campeonato</title>
+    <style>
+		table, th, td {
+		  border: 1px solid black;
+		  border-collapse: collapse;
+		}
+	</style>
+</head>
+<body>
+        <body>               
+            <div class="container">
+                     <div class="row">
+                    <table class="table table-bordered" >
+                    <thead>
+                       <tr>
+                            <td>Nome</td>
+                            <td>Inicio</td>
+                            <td>Fim</td>                                                        
+                        </tr>  
+                    </thead>
+                    <tbody>        
+                            <tr th:each="campeonato : ${campeonatos}">
+                                    <td th:text="${campeonato.nome_campeonato}"></td>
+                                    <td th:text="${campeonato.dtaInicio_campeonato}"></td>		
+                                    <td th:text="${campeonato.dtaFinal_campeonato}"></td>	
+                                    <td>
+                                        <a th:href="/tabelaCampeonato">Ver tabela</a>
+                                    </td>
+                                </tr>	
+                    </tbody>   
+                    </table> 
+                     </div>
+            </div>
+</body>
+</html>

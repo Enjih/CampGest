@@ -19,6 +19,15 @@ public class EstadioController {
 	@Autowired
 	private EstadioService estadioService;
 
+	@RequestMapping(value="/Estadio", method = RequestMethod.GET)
+    public ModelAndView indexArbitro(){
+        ModelAndView mav = new ModelAndView("indexEstadio");
+        
+        mav.addObject("estadios", estadioService.getAllEstadios());
+        
+        return mav;
+    
+    }
 	
 	@RequestMapping(value = "/insertEstadio", method = RequestMethod.GET)
     public ModelAndView insertEstadio() {

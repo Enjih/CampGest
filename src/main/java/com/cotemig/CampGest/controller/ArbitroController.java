@@ -17,6 +17,15 @@ public class ArbitroController {
 	@Autowired
 	private ArbitroService arbitroService;
 
+	@RequestMapping(value="/Arbitro", method = RequestMethod.GET)
+    public ModelAndView indexArbitro(){
+        ModelAndView mav = new ModelAndView("indexArbitro");
+        
+        mav.addObject("arbitros", arbitroService.getAllArbitros());
+        
+        return mav;
+    
+    }
 	
 	@RequestMapping(value = "/insertArbitro", method = RequestMethod.GET)
     public ModelAndView insertArbitro() {
