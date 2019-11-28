@@ -37,6 +37,22 @@ public class Time {
 	@JoinColumn(name="campeonato_id", nullable=false)
 	private Campeonato campeonato;
 	
+	public List<Partida> getPartidas() {
+		return partidas;
+	}
+
+	public void setPartidas(List<Partida> partidas) {
+		this.partidas = partidas;
+	}
+
+	public Campeonato getCampeonato() {
+		return campeonato;
+	}
+
+	public void setCampeonato(Campeonato campeonato) {
+		this.campeonato = campeonato;
+	}
+
 	public Integer SaldoGols(){
 		return gols_pro - gols_contra;
 	}

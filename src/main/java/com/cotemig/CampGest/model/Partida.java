@@ -43,6 +43,18 @@ public class Partida {
 	@OneToMany(mappedBy="partida")
 	private List<Arbitro> arbitros;
 
+	public Rodada getRodada() {
+		return rodada;
+	}
+	public void setRodada(Rodada rodada) {
+		this.rodada = rodada;
+	}
+	public List<Time> getTimes() {
+		return times;
+	}
+	public void setTimes(List<Time> times) {
+		this.times = times;
+	}
 	//Implementação RN01 - Pontuação dos jogos
 	public void cauculaPontuacao(Time time1, Time time2, Integer gol_time1, Integer gol_time2){
 		if(gol_time1 > gol_time2) {
