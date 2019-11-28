@@ -30,6 +30,8 @@ public class Time {
 	private Integer gols_pro;
 	private Integer gols_contra;
         private Integer gols_saldo;
+        private Integer posicao;
+        private boolean classificado = false;
 	
 	
 	@ManyToMany(mappedBy="times")
@@ -38,6 +40,23 @@ public class Time {
 	@ManyToOne
 	@JoinColumn(name="campeonato_id", nullable=false)
 	private Campeonato campeonato;
+        
+        
+        public Integer getPosicao() {
+            return posicao;
+        }
+
+        public void setPosicao(Integer posicao) {
+            this.posicao = posicao;
+        }
+        
+        private void position (){
+            if (this.posicao > 0 && this.posicao <= 4){
+             
+                this.classificado = true;
+                
+            }
+        }
         
         private void setGols_saldo(){
 		this.gols_saldo =  gols_pro - gols_contra;
