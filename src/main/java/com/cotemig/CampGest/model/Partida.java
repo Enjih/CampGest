@@ -9,7 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Partida {
@@ -24,14 +27,22 @@ public class Partida {
 	@ManyToOne
 	@JoinColumn(name="estadio_id", nullable=false)
 	private Estadio estadio;
+
+	@ManyToOne
+	@JoinColumn(name="rodada_id", nullable=false)
+	private Rodada rodada;
+
+	@ManyToMany
+	@JoinColumn(name="partida_id", nullable=false)
+	private List<Time> times;
 	
-	private Time time1;
-	private Time time2;
 	private Integer gol_time1;
 	private Integer gol_time2;
 	private Date data_partida;
+
+	@OneToMany(mappedBy="partida")
 	private List<Arbitro> arbitros;
-	
+
 	//Implementação RN01 - Pontuação dos jogos
 	public void cauculaPontuacao(Time time1, Time time2, Integer gol_time1, Integer gol_time2){
 		if(gol_time1 > gol_time2) {
@@ -75,18 +86,12 @@ public class Partida {
 	public void setEstadio(Estadio estadio) {
 		this.estadio = estadio;
 	}
-	public Time getTime1() {
-		return time1;
-	}
-	public void setTime1(Time time1) {
-		this.time1 = time1;
-	}
-	public Time getTime2() {
-		return time2;
-	}
-	public void setTime2(Time time2) {
-		this.time2 = time2;
-	}
+
+	/*
+	 * public Time getTime1() { return time1; } public void setTime1(Time time1) {
+	 * this.time1 = time1; } public Time getTime2() { return time2; } public void
+	 * setTime2(Time time2) { this.time2 = time2; }
+	 */
 	public Integer getGol_time1() {
 		return gol_time1;
 	}
@@ -105,7 +110,7 @@ public class Partida {
 	public void setData_partida(Date data_partida) {
 		this.data_partida = data_partida;
 	}
-	
+
 	//Implementação da RN04 – Quantidade árbitros por partida
 	public List<Arbitro> getArbitros() {
 		arbitros = new ArrayList<Arbitro>(4);

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -26,6 +29,13 @@ public class Time {
 	private Integer empates;	
 	private Integer gols_pro;
 	private Integer gols_contra;
+	
+	@ManyToMany(mappedBy="times")
+	private List<Partida> partidas;
+	
+	@ManyToOne
+	@JoinColumn(name="campeonato_id", nullable=false)
+	private Campeonato campeonato;
 	
 	public Integer SaldoGols(){
 		return gols_pro - gols_contra;

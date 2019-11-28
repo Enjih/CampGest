@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Campeonato {
@@ -17,7 +18,11 @@ public class Campeonato {
     private String nome_campeonato;
     private String dtaInicio_campeonato;
     private String dtaFinal_campeonato;
+    
+    @OneToMany(mappedBy="campeonato_rodada")
     private List<Rodada> rodadas; 
+    
+    @OneToMany(mappedBy="campeonato")
     private List<Time> times;
     
 	public int getCod_campeonato() {
@@ -44,6 +49,7 @@ public class Campeonato {
 	public void setDtaFinal_campeonato(String dtaFinal_campeonato) {
 		this.dtaFinal_campeonato = dtaFinal_campeonato;
 	}
+	
 	public List<Rodada> getRodadas() {
 		//Implementação da RN02 - Quantidade de rodadas
 		rodadas = new ArrayList<Rodada>(19);
@@ -54,6 +60,7 @@ public class Campeonato {
 			this.rodadas = rodadas;		
 		}		
 	}
+	
 	public List<Time> getTimes() {
 		//Implementação da RN02 - Quantidade de times
 		times = new ArrayList<Time>(20);

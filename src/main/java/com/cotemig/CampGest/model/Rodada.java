@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Rodada {
@@ -14,7 +17,12 @@ public class Rodada {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer cod_tabela;
 	
+	@OneToMany(mappedBy="rodada")
 	private List<Partida> partidas;
+	
+	@ManyToOne
+	@JoinColumn(name="campeonato_id", nullable=false)
+	private Campeonato campeonato_rodada;
 
 	public Integer getCod_tabela() {
 		return cod_tabela;

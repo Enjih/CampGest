@@ -42,8 +42,8 @@ public class PartidaServiceImpl implements PartidaService {
 		getPartida.get().setCod_partida(partida.getCod_partida());
 		getPartida.get().setCampeonato(partida.getCampeonato());
 		getPartida.get().setEstadio(partida.getEstadio());
-		getPartida.get().setTime1(partida.getTime1());
-		getPartida.get().setTime2(partida.getTime2());
+		//getPartida.get().setTime1(partida.getTime1());
+		//getPartida.get().setTime2(partida.getTime2());
 		getPartida.get().setGol_time1(partida.getGol_time1());
 		getPartida.get().setGol_time2(partida.getGol_time2());
 		getPartida.get().setData_partida(partida.getData_partida());
