@@ -53,6 +53,12 @@ public class Campeonato {
 	public List<Rodada> getRodadas() {
 		//Implementação da RN02 - Quantidade de rodadas
 		rodadas = new ArrayList<Rodada>(19);
+		Integer i = 1;
+		for(Rodada rodada : rodadas) {
+			rodada.setCod_rodada(i);
+			i++;
+		}
+		i=1;
 		return rodadas;
 	}
 	public void setRodadas(List<Rodada> rodadas) {

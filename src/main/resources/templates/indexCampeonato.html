@@ -21,18 +21,23 @@
                        <tr>
                             <td>Nome</td>
                             <td>Inicio</td>
-                            <td>Fim</td>                                                        
+                            <td>Fim</td>         
+                            <td>Tabela</td>
+                            <td>Rodadas</td>
                         </tr>  
                     </thead>
                     <tbody>        
-                            <tr th:each="campeonato : ${campeonatos}">
+                            <tr>
                                     <td th:text="${campeonato.nome_campeonato}"></td>
                                     <td th:text="${campeonato.dtaInicio_campeonato}"></td>		
                                     <td th:text="${campeonato.dtaFinal_campeonato}"></td>	
                                     <td>
-                                        <a th:href="/tabelaCampeonato">Ver tabela</a>
+                                        <a th:href="@{/tabelaCampeonato}">Ver tabela</a>
                                     </td>
-                                </tr>	
+                                    <td>
+                                        <a th:href="@{/rodadasCampeonato}">Ver rodadas</a>
+                                    </td>
+                            </tr>	
                     </tbody>   
                     </table> 
                      </div>

@@ -21,14 +21,33 @@ public class CampeonatoController {
     public ModelAndView TabelaCampeonato(){
         ModelAndView mav = new ModelAndView("indexCampeonato");
         
-        mav.addObject("campeonatos", campeonatoService.getAllCampeonatos());
-        mav.addObject("times", timeService.getAllTimes());
+        mav.addObject("campeonato", campeonatoService.getCampeonatoById(1).get());
+        mav.addObject("times", timeService.getAllTimes());        
         
-        
-        return mav;
-    
+        return mav;    
     }
 	
-	
+	@RequestMapping(value="/tabelaCampeonato", method = RequestMethod.GET)
+    public ModelAndView tabelaCampeonato(){
+        return new ModelAndView("tabelaCampeonato");
+    }
 
+	@RequestMapping(value="/rodadasCampeonato", method = RequestMethod.GET)
+    public ModelAndView rodadasCampeonato(){
+        ModelAndView mav = new ModelAndView("indexRodada");
+        
+        mav.addObject("campeonato", campeonatoService.getCampeonatoById(1).get());
+        mav.addObject("rodadas", campeonatoService.getCampeonatoById(1).get().getRodadas());        
+        
+        return mav;		
+    }
+	
+	@RequestMapping(value="/rodadasPartida", method = RequestMethod.GET)
+    public ModelAndView rodadasPartida(Integer id){
+        ModelAndView mav = new ModelAndView("indexRodadasPartida",
+        		"partidas",
+        		campeonatoService.getCampeonatoById(1).get().getRodadas().get(id).getPartidas());      
+        
+        return mav;		
+    }
 }
