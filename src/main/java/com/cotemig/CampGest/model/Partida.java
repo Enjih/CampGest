@@ -36,6 +36,9 @@ public class Partida {
 	@JoinColumn(name="partida_id", nullable=false)
 	private List<Time> times;
 	
+	private Time t[] = new Time[2];
+	
+	
 	private Integer gol_time1;
 	private Integer gol_time2;
 	private Date data_partida;
@@ -43,6 +46,23 @@ public class Partida {
 	@OneToMany(mappedBy="partida")
 	private List<Arbitro> arbitros;
 
+	
+
+	public Time getTime1() {
+		return t[0];
+	}
+	public Time getTime2() {
+		return t[1];
+	}
+
+	public void setTime1(Time time1) {
+		this.t[0] = time1;
+	}
+	
+	public void setTime2(Time time1) {
+		this.t[0] = time1;
+	}
+	
 	public Rodada getRodada() {
 		return rodada;
 	}

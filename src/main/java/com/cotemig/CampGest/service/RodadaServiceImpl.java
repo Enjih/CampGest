@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.cotemig.CampGest.dao.RodadaDAO;
 import com.cotemig.CampGest.model.Rodada;
-import com.cotemig.CampGest.model.Time;
 
 @Service("rodadaService")
 public class RodadaServiceImpl implements RodadaService{
@@ -36,10 +35,10 @@ public class RodadaServiceImpl implements RodadaService{
 	}
 
 	@Override
-	public void updateRodadaById(Integer id, Rodada Rodada) {
+	public void updateRodadaById(Integer id, Rodada rodada) {
 		Optional<Rodada> getRodada = getRodadaById(id);
-		getRodada.get().setCod_tabela(Rodada.getCod_tabela());
-		getRodada.get().setPartidas(Rodada.getPartidas());
+		getRodada.get().setCod_rodada(rodada.getCod_rodada());
+		getRodada.get().setPartidas(rodada.getPartidas());
 	}
 	
 

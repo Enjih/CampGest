@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.cotemig.CampGest.dao.CampeonatoDAO;
 import com.cotemig.CampGest.model.Campeonato;
-import com.cotemig.CampGest.model.Time;
 
 @Service("campeonatoService")
 public class CampeonatoServiceImpl implements CampeonatoService{

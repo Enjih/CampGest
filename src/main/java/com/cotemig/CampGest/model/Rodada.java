@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Rodada {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer cod_rodada;
 	
 	@OneToMany(mappedBy="rodada")
@@ -21,6 +23,14 @@ public class Rodada {
 	@ManyToOne
 	@JoinColumn(name="campeonato_id", nullable=false)
 	private Campeonato campeonato_rodada;
+
+	public Campeonato getCampeonato_rodada() {
+		return campeonato_rodada;
+	}
+
+	public void setCampeonato_rodada(Campeonato campeonato_rodada) {
+		this.campeonato_rodada = campeonato_rodada;
+	}
 
 	public Integer getCod_rodada() {
 		return cod_rodada;

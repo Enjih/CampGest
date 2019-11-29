@@ -15,56 +15,65 @@ import javax.persistence.OneToMany;
 @Entity
 public class Time {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer cod_time;
-	
+
 	private String nome_time;
-	
+
 	@OneToMany(mappedBy="time")
-    private List<Atleta> atletas;
-	
+	private List<Atleta> atletas;
+
 	private Integer pontos;
 	private Integer vitorias;
 	private Integer derrotas;
 	private Integer empates;	
 	private Integer gols_pro;
 	private Integer gols_contra;
-        private Integer gols_saldo;
-        private Integer posicao;
-        private boolean classificado = false;
-	
-	
+	private Integer gols_saldo;
+	private Integer posicao;
+	private boolean classificado;
+
+
 	@ManyToMany(mappedBy="times")
 	private List<Partida> partidas;
 	
 	@ManyToOne
 	@JoinColumn(name="campeonato_id", nullable=false)
 	private Campeonato campeonato;
-        
-        
-        public Integer getPosicao() {
-            return posicao;
-        }
 
-        public void setPosicao(Integer posicao) {
-            this.posicao = posicao;
-        }
-        
-        private void position (){
-            if (this.posicao > 0 && this.posicao <= 4){
-             
-                this.classificado = true;
-                
-            }
-        }
-        
-        private void setGols_saldo(){
+	public boolean isClassificado() {
+		return classificado;
+	}
+
+	public void setClassificado(boolean classificado) {
+		this.classificado = classificado;
+	}
+
+	public void setGols_saldo(Integer gols_saldo) {
+		this.gols_saldo = gols_saldo;
+	}
+
+	public Integer getPosicao() {
+		return posicao;
+	}
+
+	public void setPosicao(Integer posicao) {
+		this.posicao = posicao;
+	}
+
+	private void position(){
+		if (this.posicao > 0 && this.posicao <= 4){
+			this.classificado = true;
+		}
+	}
+
+	private void setGols_saldo(){
 		this.gols_saldo =  gols_pro - gols_contra;
 	}
 	public Integer getGols_saldo(){
 		return this.gols_saldo;
-        }
-	
+	}
+
 	public List<Partida> getPartidas() {
 		return partidas;
 	}
@@ -84,7 +93,7 @@ public class Time {
 	public Integer SaldoGols(){
 		return gols_pro - gols_contra;
 	}
-	
+
 	public Integer getPontos() {
 		return pontos;
 	}
@@ -123,7 +132,7 @@ public class Time {
 
 	public void setGols_pro(Integer gols_pro) {
 		this.gols_pro = gols_pro;
-                setGols_saldo();
+		setGols_saldo();
 	}
 
 	public Integer getGols_contra() {
@@ -132,7 +141,7 @@ public class Time {
 
 	public void setGols_contra(Integer gols_contra) {
 		this.gols_contra = gols_contra;
-                setGols_saldo();
+		setGols_saldo();
 	}
 
 	public Integer getCod_time() {
