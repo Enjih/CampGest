@@ -7,21 +7,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Rodada {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer cod_tabela;
+	private Integer cod_rodada;
 	
+	@OneToMany(mappedBy="rodada")
 	private List<Partida> partidas;
+	
+	@ManyToOne
+	@JoinColumn(name="campeonato_id", nullable=false)
+	private Campeonato campeonato_rodada;
 
-	public Integer getCod_tabela() {
-		return cod_tabela;
+	public Integer getCod_rodada() {
+		return cod_rodada;
 	}
 
-	public void setCod_tabela(Integer cod_tabela) {
-		this.cod_tabela = cod_tabela;
+	public void setCod_rodada(Integer cod_rodada) {
+		this.cod_rodada = cod_rodada;
 	}
 
 	public List<Partida> getPartidas() {

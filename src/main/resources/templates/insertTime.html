@@ -7,8 +7,11 @@
 		<form action="/insertTime" method="POST" modelAttribute="time">		
   			Nome Time:<br>
   			<input type="text" name="nome_time"><br>
-  			<br>              			
-  			<input type="submit" value="Inserir">
+  			Cameonato:<br> 
+  			<select th:field="*{time.campeonato}">
+  				<option th:each="c : ${campeonatos}" th:value="${c.cod_campeonato}" th:text="${c.nome_campeonato}"></option>
+            </select>
+            <input type="submit" value="Inserir">
 		</form>
 	</body>
 </html>

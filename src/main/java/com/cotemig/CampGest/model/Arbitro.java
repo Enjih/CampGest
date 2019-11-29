@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Arbitro {
@@ -13,6 +15,9 @@ public class Arbitro {
 	private Integer cod_arbitro;
 	private String nome_arbitro;
 	
+	@ManyToOne
+	@JoinColumn(name="partida_id", nullable=false)
+	private Partida partida;
 	
     public Integer getCodigo_arbitro() {
 		return cod_arbitro;
