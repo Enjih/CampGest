@@ -41,6 +41,7 @@ public class RodadaServiceImpl implements RodadaService{
 		getRodada.get().setCod_tabela(Rodada.getCod_tabela());
 		getRodada.get().setPartidas(Rodada.getPartidas());
 	}
+	
 
 	@Override
 	public void updateRodada(Rodada rodada) {
