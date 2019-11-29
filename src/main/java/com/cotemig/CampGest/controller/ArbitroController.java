@@ -17,6 +17,15 @@ public class ArbitroController {
 	@Autowired
 	private ArbitroService arbitroService;
 
+	@RequestMapping(value="/Arbitro", method = RequestMethod.GET)
+    public ModelAndView indexArbitro(){
+        ModelAndView mav = new ModelAndView("indexArbitro");
+        
+        mav.addObject("arbitros", arbitroService.getAllArbitros());
+        
+        return mav;
+    
+    }
 	
 	@RequestMapping(value = "/insertArbitro", method = RequestMethod.GET)
     public ModelAndView insertArbitro() {
@@ -42,11 +51,8 @@ public class ArbitroController {
     }
 	
 	@RequestMapping(value = "/excluirArbitro", method = RequestMethod.GET)
-    public ModelAndView excluirArbitro(Integer id) {
-		
-		return new ModelAndView("excluirArbitro", "arbitro", arbitroService.getArbitroById(id).get());
-		
-		
+    public ModelAndView excluirArbitro(Integer id) {		
+		return new ModelAndView("excluirArbitro", "arbitro", arbitroService.getArbitroById(id).get());		
     }
 	
 	@RequestMapping(value = "/excluirArbitro", method = RequestMethod.POST)

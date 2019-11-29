@@ -1,14 +1,16 @@
 package com.cotemig.CampGest.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Campeonato {
-	
-
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int cod_campeonato;
@@ -16,6 +18,13 @@ public class Campeonato {
     private String nome_campeonato;
     private String dtaInicio_campeonato;
     private String dtaFinal_campeonato;
+    
+    @OneToMany(mappedBy="campeonato_rodada")
+    private List<Rodada> rodadas; 
+    
+    @OneToMany(mappedBy="campeonato")
+    private List<Time> times;
+    
 	public int getCod_campeonato() {
 		return cod_campeonato;
 	}
@@ -40,5 +49,32 @@ public class Campeonato {
 	public void setDtaFinal_campeonato(String dtaFinal_campeonato) {
 		this.dtaFinal_campeonato = dtaFinal_campeonato;
 	}
-	  
+	
+	public List<Rodada> getRodadas() {
+		//Implementação da RN02 - Quantidade de rodadas
+		rodadas = new ArrayList<Rodada>(19);
+		Integer i = 1;
+		for(Rodada rodada : rodadas) {
+			rodada.setCod_rodada(i);
+			i++;
+		}
+		i=1;
+		return rodadas;
+	}
+	public void setRodadas(List<Rodada> rodadas) {
+		if(rodadas.size() <= 19) {
+			this.rodadas = rodadas;		
+		}		
+	}
+	
+	public List<Time> getTimes() {
+		//Implementação da RN02 - Quantidade de times
+		times = new ArrayList<Time>(20);
+		return times;
+	}
+	public void setTimes(List<Time> times) {
+		if(times.size() <= 20) {
+		 this.times = times;
+		}		
+	}	  
 }

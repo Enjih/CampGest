@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cotemig.CampGest.model.Time;
+import com.cotemig.CampGest.service.CampeonatoService;
 import com.cotemig.CampGest.service.TimeService;
 
 @Controller
@@ -20,21 +21,25 @@ public class TimeController {
 	@Autowired
 	private TimeService timeService;
 	
+	@Autowired
+	private CampeonatoService campeonatoService;
+	
 	@RequestMapping( value = "/Time", method = RequestMethod.GET) 
     public ModelAndView time(){
 		ModelAndView mav = new ModelAndView("indexTime");
 		
 		mav.addObject("times", timeService.getAllTimes());
+		mav.addObject("campeonatos", campeonatoService.getAllCampeonatos());
         
         return mav;
     }
 	
 	@RequestMapping(value = "/insertTime", method = RequestMethod.GET)
     public ModelAndView insertAtleta() {
-		
         ModelAndView mav = new ModelAndView("insertTime");
-        
+        mav.addObject("campeonatos", campeonatoService.getAllCampeonatos());
         mav.addObject("time", new Time());
+        
         
         return mav;
     }
@@ -53,7 +58,7 @@ public class TimeController {
     }
 	
 	@RequestMapping(value = "/alterarTime", method = RequestMethod.GET)
-    public ModelAndView alterarAtleta(Integer id) {		
+    public ModelAndView alterarTime(Integer id) {		
         return new ModelAndView("alterarTime", "time", timeService.getTimeById(id).get());
     }
 	
@@ -68,18 +73,21 @@ public class TimeController {
         return "redirect:Time";
     }
 	
-	@RequestMapping(value = "/excluirTime", method = RequestMethod.GET)
-    public ModelAndView excluirAtleta(Integer id) {		
-		return new ModelAndView("excluirTime", "time", timeService.getTimeById(id).get());		
+    @RequestMapping(value = "/excluirTime", method = RequestMethod.GET)
+    public String excluirTime(Integer id) {		
+        timeService.deleteTimeById(id);
+
+        return "redirect:Time";
     }
+    
 	
-	@RequestMapping(value = "/excluirTime", method = RequestMethod.POST)
-    public String submitExcluirAtleta(@Valid @ModelAttribute("time")Time time,
-      BindingResult result, ModelMap model) {        
-		if (result.hasErrors()) {
-            return "error";
-        } 		
-		timeService.deleteTimeById(time.getCod_time());        
-		return "redirect:Time";
-    }	
+//	@RequestMapping(value = "/excluirTime", method = RequestMethod.POST)
+//    public String submitExcluirTime(@Valid @ModelAttribute("time")Time time,
+//      BindingResult result, ModelMap model) {        
+//		if (result.hasErrors()) {
+//            return "error";
+//        } 		
+//		timeService.deleteTimeById(time.getCod_time());        
+//		return "redirect:Time";
+//    }	
 }

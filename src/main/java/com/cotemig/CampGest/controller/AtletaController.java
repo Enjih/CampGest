@@ -34,46 +34,54 @@ public class AtletaController {
         return mav;
     }
 	
-	@RequestMapping(value = "/insertAtleta", method = RequestMethod.GET)
+    @RequestMapping(value = "/insertAtleta", method = RequestMethod.GET)
     public ModelAndView insertAtleta() {
 		
         ModelAndView mav = new ModelAndView("insertAtleta");
-        
+
         mav.addObject("atleta", new Atleta());
-        mav.addObject("times", timeService.getAllTimes());
-        
+        mav.addObject("times", timeService.getAllTimes());     
+
         return mav;
     }
 	
-	@RequestMapping(value = "/insertAtleta", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertAtleta", method = RequestMethod.POST)
     public String submitInsert(@Valid @ModelAttribute("atleta")Atleta atleta,
       BindingResult result, ModelMap model) {
         
 		if (result.hasErrors()) {
             return "error";
         }
-        
-		atletaService.insertAtleta(atleta);        
-        return "redirect:Atleta";
+        //verifica se o time escolhido para o atleta possui mais de 24 jogadores
+		if(atleta.getTime().getAtletas().size() > 23) {//caso tenha, retorna mensagem de erro
+			return "Time escolhido tem 24 atletas";
+			
+		}else {//caso nao tenha, insere o atleta no banco, e insere o atleta na lista de atletas do time
+			atletaService.insertAtleta(atleta);   	
+			atleta.getTime().getAtletas().add(atleta); 	
+			return "redirect:Atleta";
+		}		             
     }
 	
 	@RequestMapping(value = "/excluirAtleta", method = RequestMethod.GET)
-    public ModelAndView excluirAtleta(Integer id) {		
-		return new ModelAndView("excluirAtleta", "atleta", atletaService.getAtletaById(id).get());		
+    public String excluirAtleta(Integer id) {	
+        atletaService.deleteAtletaById(id);
+
+        return "redirect:Atleta";
     }
 	
-	@RequestMapping(value = "/excluirAtleta", method = RequestMethod.POST)
-    public String submitExcluirAtleta(@Valid @ModelAttribute("atleta")Atleta atleta,
-      BindingResult result, ModelMap model) {
-        
-		if (result.hasErrors()) {
-            return "error";
-        } 
-		
-		atletaService.deleteAtletaById(atleta.getCod_atleta());
-        
-		return "redirect:Atleta";
-    }
+//	@RequestMapping(value = "/excluirAtleta", method = RequestMethod.POST)
+//    public String submitExcluirAtleta(@Valid @ModelAttribute("atleta")Atleta atleta,
+//      BindingResult result, ModelMap model) {
+//        
+//		if (result.hasErrors()) {
+//            return "error";
+//        } 
+//		
+//		atletaService.deleteAtletaById(atleta.getCod_atleta());
+//        
+//		return "redirect:Atleta";
+//    }
 	
 	@RequestMapping(value = "/alterarAtleta", method = RequestMethod.GET)
     public ModelAndView alterarAtleta(Integer id) {

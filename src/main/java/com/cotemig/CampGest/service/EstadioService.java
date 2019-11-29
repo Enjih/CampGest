@@ -12,7 +12,7 @@ public interface EstadioService {
 	void deleteAllEstadios();
 	void deleteEstadioById(Integer id);
 	void updateEstadioById(Integer id, Estadio Estadio);
-	void updateEstadio(Estadio Estadio);
-	void insertEstadio(Estadio Estadio);
+	void updateEstadio(Estadio estadio);
+	void insertEstadio(Estadio estadio);
 
 }

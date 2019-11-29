@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atleta</title>
+    <style>
+		table, th, td {
+		  border: 1px solid black;
+		  border-collapse: collapse;
+		}
+	</style>
+</head>
+<body>
+        <body>               
+            <div class="container">                     
+                    <div class="row">
+                    <table class="table table-bordered" >
+                    <thead>
+                       <tr>
+                            <td>Campeonato</td>
+                            <td>Rodada</td>
+                            <td>Partidas</td>
+                                                        
+                        </tr>  
+                    </thead>
+                    <tbody>        
+                            <tr th:each="rodada : ${rodadas}">
+                                <td th:text="${campeonato.nome_campeonato}"></td>
+                                    <td th:text="${rodada.cod_rodada}ª"></td>
+                                    <a th:href="@{/rodadasPartida(id=${rodada.cod_rodada})}">Ver partidas</a>
+                                </tr>	
+                    </tbody>   
+                    </table> 
+                     </div>
+                     <br>
+                     <form action="/rodadasCampeonato" method="POST" modelAttribute="novarodada">
+                        <div class="row">                    
+                        <input type="submit" class="btn btn-danger" value="Nova Rodada">
+                    </div>
+                     </form> 
+            </div>
+</body>
+</html>

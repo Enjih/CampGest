@@ -12,7 +12,7 @@ public interface CampeonatoService {
 	void deleteAllCampeonatos();
 	void deleteCampeonatoById(Integer id);
 	void updateCampeonatoById(Integer id, Campeonato Campeonato);
-	void updateCampeonato(Campeonato Campeonato);
-	void insertCampeonato(Campeonato Campeonato);
+	void updateCampeonato(Campeonato campeonato);
+	void insertCampeonato(Campeonato campeonato);
 
 }
